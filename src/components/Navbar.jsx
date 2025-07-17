@@ -1,12 +1,16 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-
-export default function Navbar({title = "Hello", aboutText = "Enjoying learning reactJs"}) {
+export default function Navbar({
+	toggleMode,
+	mode,
+	title = "Hello",
+	aboutText = "Enjoying learning reactJs",
+}) {
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
 			<div className="container-fluid">
 				<a className="navbar-brand" href="/">
-				  {title}
+					{title}
 				</a>
 				<button
 					className="navbar-toggler"
@@ -39,10 +43,23 @@ export default function Navbar({title = "Hello", aboutText = "Enjoying learning 
 							placeholder="Search"
 							aria-label="Search"
 						/>
-						<button className="btn btn-outline-success" type="submit">
+						<button className="btn btn-primary" type="submit">
 							Search
 						</button>
 					</form>
+
+					<div className={`form-check form-switch mx-4 text-${mode === "light" ? "dark" : "light"}`}>
+						<input
+							onClick={toggleMode}
+							className="form-check-input"
+							type="checkbox"
+							role="switch"
+							id="switchCheckDefault"
+						/>
+						<label className="form-check-label" htmlFor="switchCheckDefault">
+							{mode === "light" ? "Enable Dark Mode" : "Enable Light Mode"}
+						</label>
+					</div>
 				</div>
 			</div>
 		</nav>
@@ -50,6 +67,6 @@ export default function Navbar({title = "Hello", aboutText = "Enjoying learning 
 }
 
 Navbar.propTypes = {
-  title : PropTypes.string,
-  aboutText : PropTypes.string
-}
+	title: PropTypes.string,
+	aboutText: PropTypes.string,
+};
