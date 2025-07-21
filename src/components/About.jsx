@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function About(props) {
-  // Style for accordion items and buttons
   const itemStyle = {
     color: props.mode === 'dark' ? 'white' : 'black',
     backgroundColor: props.mode === 'dark' ? 'rgb(36 74 104)' : 'white',
@@ -13,7 +12,6 @@ export default function About(props) {
       <div
         className="container accordion"
         id="accordionExample"
-        // No border on container
       >
         <h1 className="my-3" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
           About Us
@@ -93,9 +91,6 @@ export default function About(props) {
           </div>
         </div>
 
-        <div className="container my-4">
-          {/* Optional: Add toggle button or more content here */}
-        </div>
       </div>
     </div>
   );

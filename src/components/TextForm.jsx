@@ -20,7 +20,6 @@ export default function TextForm(props) {
 			reversedText += text[i];
 			props.showAlert("Reversed text", "success");
 		}
-		console.log(reversedText);
 		setText(reversedText);
 	};
 	const [text, setText] = useState("");
@@ -75,7 +74,7 @@ export default function TextForm(props) {
 				<h2>Your text summary</h2>
 				<p>
 					{
-						text.split(" ").filter((element) => {
+						text.split(/\s+/).filter((element) => {
 							return element.length !== 0;
 						}).length
 					}{" "}

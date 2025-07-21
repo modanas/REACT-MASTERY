@@ -36,7 +36,6 @@ function App() {
 	};
 	return (
 		<>
-			{/* <Navbar title="Anas" aboutText="About"/> */}
 			<Router>
 				<Navbar mode={mode} toggleMode={toggleMode} />
 				<Alert alert={alert} />
