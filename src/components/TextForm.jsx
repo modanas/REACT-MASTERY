@@ -4,12 +4,12 @@ export default function TextForm(props) {
 	const handleUpperClick = () => {
 		let newText = text.toUpperCase();
 		setText(newText);
-		props.showAlert("Converted to Uppercase","success");
+		props.showAlert("Converted to Uppercase", "success");
 	};
 	const handleLowerClick = () => {
 		let newLowText = text.toLowerCase();
 		setText(newLowText);
-		props.showAlert("Converted to Lowercase","success");
+		props.showAlert("Converted to Lowercase", "success");
 	};
 	const handleOnChange = (event) => {
 		setText(event.target.value);
@@ -18,7 +18,7 @@ export default function TextForm(props) {
 		let reversedText = "";
 		for (let i = text.length - 1; i >= 0; i--) {
 			reversedText += text[i];
-			props.showAlert("Reversed text","success");
+			props.showAlert("Reversed text", "success");
 		}
 		console.log(reversedText);
 		setText(reversedText);
@@ -27,11 +27,14 @@ export default function TextForm(props) {
 
 	return (
 		<>
-			<div className="container mb-3" style={{ color: props.mode === "dark" ? "white" : "black" }}>
-				<h1>{props.heading}</h1>
+			<div
+				className="container mb-3"
+				style={{ color: props.mode === "dark" ? "white" : "black" }}
+			>
+				<h1 className="mb-4">{props.heading}</h1>
 				<textarea
 					style={{
-						backgroundColor: props.mode === "dark" ? "grey" : "white",
+						backgroundColor: props.mode === "dark" ? "#13466e" : "white",
 						color: props.mode === "dark" ? "white" : "black",
 					}}
 					value={text}
@@ -43,25 +46,48 @@ export default function TextForm(props) {
 				>
 					{text}
 				</textarea>
-				<button onClick={handleUpperClick} className="btn btn-primary mt-2">
+				<button
+					disabled={text.length === 0}
+					onClick={handleUpperClick}
+					className="mx-1 my-1 btn btn-primary mt-2"
+				>
 					Convert to Uppercase
 				</button>
 				<button
+					disabled={text.length === 0}
 					onClick={handleLowerClick}
-					className="mx-4 btn btn-primary mt-2"
+					className="mx-1 my-1 btn btn-primary mt-2"
 				>
 					Convert to Lowercase
 				</button>
-				<button onClick={handleReverseClick} className="btn btn-primary mt-2">
+				<button
+					disabled={text.length === 0}
+					onClick={handleReverseClick}
+					className="mx-1 my-1 btn btn-primary mt-2"
+				>
 					Reverse
 				</button>
 			</div>
-			<div className="container my-3" style={{ color: props.mode === "dark" ? "white" : "black" }}>
+			<div
+				className="container my-3"
+				style={{ color: props.mode === "dark" ? "white" : "black" }}
+			>
 				<h2>Your text summary</h2>
 				<p>
-					{text.split(" ").length} words and {text.length}
+					{
+						text.split(" ").filter((element) => {
+							return element.length !== 0;
+						}).length
+					}{" "}
+					words and {text.length}
 				</p>
-				<p>{0.008 * text.split(" ").length} minutes read</p>
+				<p>
+					{0.008 *
+						text.split(" ").filter((element) => {
+							return element.length !== 0;
+						}).length}{" "}
+					minutes read
+				</p>
 				<h2>Preview</h2>
 				<p>
 					{text.length > 0

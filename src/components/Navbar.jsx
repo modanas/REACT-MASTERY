@@ -1,17 +1,18 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Navbar({
 	toggleMode,
 	mode,
-	title = "Hello",
-	aboutText = "Enjoying learning reactJs",
+	title = "TextUtils",
+	aboutText = "About",
 }) {
 	return (
 		<nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
 			<div className="container-fluid">
-				<a className="navbar-brand" href="/">
+				<Link className="navbar-brand" to="/">
 					{title}
-				</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -26,17 +27,17 @@ export default function Navbar({
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="/">
+							<Link className="nav-link active" aria-current="page" to="/">
 								Home
-							</a>
+							</Link>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" href="/">
+							<Link className="nav-link active" to="/about">
 								{aboutText}
-							</a>
+							</Link>
 						</li>
 					</ul>
-					<form className="d-flex" role="search">
+					{/* <form className="d-flex" role="search">
 						<input
 							className="form-control me-2"
 							type="search"
@@ -46,7 +47,7 @@ export default function Navbar({
 						<button className="btn btn-primary" type="submit">
 							Search
 						</button>
-					</form>
+					</form> */}
 
 					<div className={`form-check form-switch mx-4 text-${mode === "light" ? "dark" : "light"}`}>
 						<input
