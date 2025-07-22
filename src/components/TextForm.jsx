@@ -22,6 +22,27 @@ export default function TextForm(props) {
 		}
 		setText(reversedText);
 	};
+	const handleClearClick = () => {
+		setText("");
+		props.showAlert("Text cleared", "success");
+	};
+
+	const handleCopyClick = () => {
+		navigator.clipboard.writeText(text);
+		props.showAlert("Copied to clipboard", "success");
+	};
+
+	const handleExtraSpaces = () => {
+		let newText = text.replace(/\s+/g, " ").trim();
+		setText(newText);
+		props.showAlert("Extra spaces removed", "success");
+	};
+	const handleSpeak = () => {
+		let msg = new SpeechSynthesisUtterance();
+		msg.text = text;
+		window.speechSynthesis.speak(msg);
+		props.showAlert("Speaking...", "success");
+	};
 	const [text, setText] = useState("");
 
 	return (
@@ -65,6 +86,38 @@ export default function TextForm(props) {
 					className="mx-1 my-1 btn btn-primary mt-2"
 				>
 					Reverse
+				</button>
+
+				<button
+					disabled={text.length === 0}
+					onClick={handleClearClick}
+					className="mx-1 my-1 btn btn-danger mt-2"
+				>
+					Clear Text
+				</button>
+
+				<button
+					disabled={text.length === 0}
+					onClick={handleCopyClick}
+					className="mx-1 my-1 btn btn-primary mt-2"
+				>
+					Copy Text
+				</button>
+
+				<button
+					disabled={text.length === 0}
+					onClick={handleExtraSpaces}
+					className="mx-1 my-1 btn btn-primary mt-2"
+				>
+					Remove Extra Spaces
+				</button>
+
+				<button
+					disabled={text.length === 0}
+					onClick={handleSpeak}
+					className="mx-1 my-1 btn btn-success mt-2"
+				>
+					Speak
 				</button>
 			</div>
 			<div
